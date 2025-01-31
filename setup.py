@@ -9,12 +9,12 @@ README = (HERE / "README.md").read_text()
 
 # This call to setup() does all the work
 setup(
-    name="yt-search",
-    version="3.0.0",
+    name="yt-finder",
+    version="1.0.0",
     description="Perform YouTube video searches without the API. Fork of youtube-search",
     long_description=README,
     long_description_content_type="text/markdown",
-    url="https://github.com/Weever1337/yt-search",
+    url="https://github.com/Weever1337/yt-finder",
     author="Weever, Joe Tatusko",
     author_email="weever1337@gmail.com",
     license="MIT",
@@ -28,7 +28,7 @@ setup(
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
     ],
-    packages=["yt_search"],
+    packages=["yt_finder"],
     include_package_data=True,
     install_requires=["requests", "aiohttp"],
 )

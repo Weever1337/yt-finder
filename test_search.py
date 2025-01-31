@@ -1,5 +1,5 @@
 import pytest
-from .yt_search import YoutubeSearch
+from .yt_finder import YoutubeSearch
 
 
 @pytest.mark.asyncio

@@ -38,3 +38,13 @@ class TestSearch:
         # for video in videos:
         #     print(video.get_views())
         assert search.region == "US"
+
+    async def test_link_to_search(self):
+        search = YoutubeSearch("https://www.youtube.com/watch?v=dQw4w9WgXcQ", max_results=2, region="US")
+        videos = await search.search()
+        for video in videos:
+            print("=" * 20)
+            print(f"Title: {video.get_title()}")
+            print(f"URL: {video.get_yt_url()}")
+            print("=" * 20)
+        assert search.region == "US"

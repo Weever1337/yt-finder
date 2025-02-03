@@ -34,9 +34,12 @@ class YoutubeSearch:
         return self.videos
 
     async def _search(self) -> list[VideoResult]:
-        encoded_search = urllib.parse.quote_plus(self.search_terms)
         BASE_URL = "https://youtube.com"
-        url = f"{BASE_URL}/results?search_query={encoded_search}"
+        if self.search_terms.startswith(BASE_URL):
+            url = self.search_terms
+        else:
+            encoded_search = urllib.parse.quote_plus(self.search_terms)
+            url = f"{BASE_URL}/results?search_query={encoded_search}"
         response = await self._get_response_with_retry(url)
         results = await self._parse_html(response)
         if self.max_results is not None and len(results) > self.max_results:

@@ -1,4 +1,4 @@
-# yt_search - Fork of youtube-search
+# yt_finder - Fork of youtube-search
 
 Python function for searching for youtube videos to avoid using their heavily rate-limited API
 
@@ -11,7 +11,7 @@ For a basic search (and all of the current functionality), you can use the searc
 ```pip install yt-search```
 
 ```python
-from yt_search import YoutubeSearch
+from yt_finder import YoutubeSearch
 import asyncio
 
 async def main():
@@ -19,8 +19,8 @@ async def main():
     videos = await search.search()
     for video in videos:
         print("=" * 20)
-        print(f"Title: {video['title']}")
-        print(f"URL: {video['yt_url']}")
+        print(f"Title: {video.get_title()}")
+        print(f"URL: {video.get_yt_url()}")
         print("=" * 20)
 
 if __name__ == "__main__":

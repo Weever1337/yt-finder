@@ -1,39 +1,54 @@
 from typing import List, Optional, Dict, Any
+from dataclasses import dataclass
 
 
+@dataclass
 class VideoResult:
-    def __init__(self, data: Dict[str, Any]):
-        self.data: Dict[str, Any] = data
+    id: Optional[str]
+    thumbnails: List[Optional[str]]
+    title: Optional[str]
+    long_desc: Optional[str]
+    channel: Optional[str]
+    duration: Optional[str]
+    views: Optional[str]
+    publish_time: Optional[str]
+    url_suffix: Optional[str]
+    yt_url: Optional[str]
 
-    def get_id(self) -> Optional[str]:
-        return self.data.get("id")
-
-    def get_thumbnails(self) -> List[Optional[str]]:
-        return self.data.get("thumbnails", [])
-
-    def get_title(self) -> Optional[str]:
-        return self.data.get("title")
-
-    def get_long_desc(self) -> Optional[str]:
-        return self.data.get("long_desc")
-
-    def get_channel(self) -> Optional[str]:
-        return self.data.get("channel")
-
-    def get_duration(self) -> Optional[str]:
-        return self.data.get("duration")
-
-    def get_views(self) -> Optional[str]:
-        return self.data.get("views")
-
-    def get_publish_time(self) -> Optional[str]:
-        return self.data.get("publish_time")
-
-    def get_url_suffix(self) -> Optional[str]:
-        return self.data.get("url_suffix")
-
-    def get_yt_url(self) -> Optional[str]:
-        return self.data.get("yt_url")
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "VideoResult":
+        return cls(
+            id=data.get("id"),
+            thumbnails=data.get("thumbnails", []),
+            title=data.get("title"),
+            long_desc=data.get("long_desc"),
+            channel=data.get("channel"),
+            duration=data.get("duration"),
+            views=data.get("views"),
+            publish_time=data.get("publish_time"),
+            url_suffix=data.get("url_suffix"),
+            yt_url=data.get("yt_url"),
+        )
 
     def to_dict(self) -> Dict[str, Any]:
-        return self.data
+        return {
+            "id": self.id,
+            "thumbnails": self.thumbnails,
+            "title": self.title,
+            "long_desc": self.long_desc,
+            "channel": self.channel,
+            "duration": self.duration,
+            "views": self.views,
+            "publish_time": self.publish_time,
+            "url_suffix": self.url_suffix,
+            "yt_url": self.yt_url,
+        }
+
+    def __eq__(self, other: "VideoResult") -> bool:
+        return self.to_dict() == other.to_dict()
+
+    def __ne__(self, other: "VideoResult") -> bool:
+        return not self.__eq__(other)
+
+    def __repr__(self) -> str:
+        return f"VideoResult({self.to_dict()})"

@@ -6,6 +6,8 @@ To avoid using the API, this uses the form on the youtube homepage and scrapes t
 
 ## Example Usage
 
+#### For more examples, see the [examples](examples) folder
+
 For a basic search (and all of the current functionality), you can use the search tool as follows:
 
 ```pip install yt-search```
@@ -19,8 +21,8 @@ async def main():
     videos = await search.search()
     for video in videos:
         print("=" * 20)
-        print(f"Title: {video.get_title()}")
-        print(f"URL: {video.get_yt_url()}")
+        print(f"Title: {video.title}")
+        print(f"URL: {video.yt_url}")
         print("=" * 20)
 
 if __name__ == "__main__":
